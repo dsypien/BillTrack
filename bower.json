@@ -1,0 +1,12 @@
+{
+  "name": "bills",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dsypien/BillTrack",
+  "authors": [
+    "David Sypien <davidsypien@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular-material": "~0.10.1"
+  }
+}
