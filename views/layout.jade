@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bundled.css')
     link(rel='stylesheet', href='/bower_components/angular-material/angular-material.min.css')
   body(ng-app='BillsApp' ng-controller='AppCtrl')
     block content
@@ -10,4 +10,4 @@ html
     script(src='/bower_components/angular-animate/angular-animate.min.js')
     script(src='/bower_components/angular-aria/angular-aria.min.js')
     script(src='/bower_components/angular-material/angular-material.min.js')
-    script(src='/javascripts/appController.js')
+    script(src='/bundled.js')
