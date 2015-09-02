@@ -8,19 +8,21 @@ block content
   md-content(class="autoScroll")
     md-input-container(class="md-icon-float")
       label Company Name (required)
-      md-icon(md-svg-src="img/icons/ic_person_24px.svg" class="name")
+      //- md-icon(md-svg-src="img/icons/ic_person_24px.svg" class="name")
       input(type="text" ng-required="true")
 
     md-input-container(class="md-icon-float")
       label Service
-      md-icon(md-svg-src="img/icons/ic_phone_24px.svg")
+      //- md-icon(md-svg-src="img/icons/ic_phone_24px.svg")
       input(type="text")
 
     md-input-container(class="md-icon-float")
-      md-icon(md-svg-src="img/icons/ic_email_24px.svg" class="email")
+      //- md-icon(md-svg-src="img/icons/ic_email_24px.svg" class="email")
       input(type="number" placeholder="Price (required)" ng-required="true") 
 
     md-input-container(class="md-icon-float")
       label Description
-      md-icon(md-svg-src="img/icons/ic_phone_24px.svg")
+      //- md-icon(md-svg-src="img/icons/ic_phone_24px.svg")
       textarea(columns="3" md-maxlength="150" style="margin-left:36px; padding-top:24px;")
+
+  signature-pad(ng-model="sigPad.width")
