@@ -3,28 +3,45 @@ angular.module('BillsApp')
 		return{
 			restrict: 'E',
 			link: function(scope, element){
-				scope.sPad={
-					width: 400,
-					height: 150,
-					context : _getContext
-				};
+				var _context = element[0].childNodes[0].getContext('2d'),
+					_isDrawing = false,
+		            _prevX,
+		            _prevY;
 
-				var _pen = {};
+		         function _init(){
+		        	_context.strokeStyle = "#777"; 	
+		         }
+		        
+	            element.bind('touchstart mousedown', function (event) {	            	
+	               	_isDrawing = true;
 
-				function _getContext(){
-					return element.getContext('2d');
-				}
+	                _prevX = event.offsetX;
+	                _prevY = event.offsetY;	            
+	            });
 
-				element.bind('mousemove', function(e) {
-				  _pen.x = e.pageX;
-				  _pen.y = e.pageY;
-				});
+	            element.bind('touchmove mousemove', function (event) {
+	                if (_isDrawing) {                    
+	                    var curX = event.offsetX;
+	                    var curY = event.offsetY;
 
-				element.bind('mousedown', function(e) {
-				  scope.sPad.fillRect(_pen.x, _pen.y, 1, 1);
-				});
+	                    _draw(_prevX, _prevY, curX, curY);
+
+	                    _prevX = curX;
+	                    _prevY = curY;
+	                }
+	            });
+
+	            element.bind('touchend mouseup', function (event) {
+	                _isDrawing = false;
+	            });
+
+	            function _draw(pX, pY, cX, cY) {
+	                _context.moveTo(pX, pY);
+	                _context.lineTo(cX, cY);
+	                _context.stroke();
+	           	}
+
 			},			
-			require: '^ngModel',
 			replace: false,
 			template: '<canvas>'
 		};
