@@ -5,6 +5,7 @@ signature-pad{
 
 	canvas{
 		border: 1px solid #aaa;
-		@include centerHorizontal;
+		margin: 20px 0;
+		display: block;
 	}
 }

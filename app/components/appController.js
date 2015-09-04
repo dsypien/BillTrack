@@ -1,5 +1,5 @@
 
-var BillsApp = angular.module('BillsApp', ['ngMaterial']);
+var BillsApp = angular.module('BillsApp', []);
 
 angular.module('BillsApp')
 	.controller('AppCtrl', ['$scope', function($scope){
