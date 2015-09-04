@@ -1,28 +1,35 @@
 extends layout
 
 block content
-  md-toolbar(class="demo-toolbar md-primary md-default-theme")
-    div(class="md-toolbar-tools")
-      h2(class="ng-binding") #{title}
-  br
-  md-content(class="autoScroll")
-    md-input-container(class="md-icon-float")
-      label Company Name (required)
-      //- md-icon(md-svg-src="img/icons/ic_person_24px.svg" class="name")
-      input(type="text" ng-required="true")
+  div(class='container')
+    ng-form(class='form-horizontal')
+      div(class='form-group')
+        h2(class="ng-binding") #{title}
+      br
+    
+      div(class='form-group')
+        label(class="col-sm-2 control-label") Email
+        div(class="col-sm-10")
+          input(type="text" ng-required="true" class="form-control" placeholder='Email')
 
-    md-input-container(class="md-icon-float")
-      label Service
-      //- md-icon(md-svg-src="img/icons/ic_phone_24px.svg")
-      input(type="text")
+      div(class='form-group')
+        label(class="col-sm-2 control-label") Service
+        div(class="col-sm-10")
+          input(type="text" class="form-control" placeholder='Service')
+     
+      div(class='form-group')
+        label(class="col-sm-2 control-label") Price
+        div(class="col-sm-10")
+          div(class='input-group')
+            div(class="input-group-addon") $
+            input(type="number" placeholder="Price (required)" ng-required="true" class="form-control")
 
-    md-input-container(class="md-icon-float")
-      //- md-icon(md-svg-src="img/icons/ic_email_24px.svg" class="email")
-      input(type="number" placeholder="Price (required)" ng-required="true") 
-
-    md-input-container(class="md-icon-float")
-      label Description
-      //- md-icon(md-svg-src="img/icons/ic_phone_24px.svg")
-      textarea(columns="3" md-maxlength="150" style="margin-left:36px; padding-top:24px;")
-
-  signature-pad(ng-model="sigPad.width")
+      div(class='form-group')
+        label(class="col-sm-2 control-label") Description
+        div(class="col-sm-10")
+          textarea(rows="5" md-maxlength="150" class="form-control" placeholder="Enter description here ...")
+  
+      div(class='form-group')
+        div(class='col-sm-2')
+        div(class='col-sm-10')
+          signature-pad(ng-model="sigPad.width")
