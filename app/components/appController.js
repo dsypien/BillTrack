@@ -6,8 +6,9 @@ angular.module('BillsApp')
 	 	$scope.bill = {
 
 	 	};
+	 	$scope.signatureCanvas = {};
 
 	 	$scope.save = function(){
-	 		console.log($scope.bill.sigPad.toDataURL());
+	 		$scope.bill.sigPad = $scope.signatureCanvas.toDataURL() ;
 	 	};
 	}]);
