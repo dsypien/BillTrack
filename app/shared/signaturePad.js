@@ -9,10 +9,12 @@ angular.module('BillsApp')
 	            _prevCoords = [],
 	            _mouseMoves = 0;
 
+	        $scope.signatureCanvas = _canvas;
+
 	         function _init(){
 	        	_context.strokeStyle = "#777"; 	
 	         }
-	        
+
             $element.bind('touchstart mousedown', function (event) {	            	
                	_isDrawing = true;
 
@@ -52,26 +54,27 @@ angular.module('BillsApp')
             			_prevCoords[2].y);
 					_context.stroke();
 
+					console.log("drawing points " + 
+						_prevCoords[0].x +
+            			_prevCoords[0].y +
+            			_prevCoords[1].x +
+            			_prevCoords[1].y +
+            			_prevCoords[2].x +
+            			_prevCoords[2].y );
+
 					_prevCoords.splice(0, 2);
             	}
-                // _context.moveTo(pX, pY);
-                // _context.lineTo(cX, cY);
-                // _context.stroke();
            	}
-
-           	$scope.clear = function(){
-           		_context.clearRect(0, 0, _canvas.width, _canvas.height);
-           		_prevCoords = [];
-           	};
 		}
 
 		return{
 			restrict: 'E',
-			controller: _controller,			
+			controller: _controller,	
 			scope: {
-            	ngModel: '='
-        	},
+				signatureCanvas : '=ngModel'
+			},
+        	require: 'ngModel',
 			replace: false,
-			template: '<canvas width=500 height=200></canvas><input type="button" class="btn btn-default" ng-click="clear()" value="Clear">'
+			template: '<canvas width=500 height=200></canvas>'
 		};
 	}]);
