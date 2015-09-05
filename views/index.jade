@@ -8,28 +8,33 @@ block content
       br
     
       div(class='form-group')
-        label(class="col-sm-2 control-label") Email
+        label(class="col-sm-2 control-label") Name
         div(class="col-sm-10")
-          input(type="text" ng-required="true" class="form-control" placeholder='Email')
+          input(type="text" ng-model="bill.name" ng-required="true" class="form-control" placeholder='Company name')
 
       div(class='form-group')
         label(class="col-sm-2 control-label") Service
         div(class="col-sm-10")
-          input(type="text" class="form-control" placeholder='Service')
+          input(type="text" ng-model="bill.service" class="form-control" placeholder='Type of service')
      
       div(class='form-group')
         label(class="col-sm-2 control-label") Price
         div(class="col-sm-10")
           div(class='input-group')
             div(class="input-group-addon") $
-            input(type="number" placeholder="Price (required)" ng-required="true" class="form-control")
+            input(type="number" ng-model="bill.price" placeholder="Price (required)" ng-required="true" class="form-control")
 
       div(class='form-group')
         label(class="col-sm-2 control-label") Description
         div(class="col-sm-10")
-          textarea(rows="5" md-maxlength="150" class="form-control" placeholder="Enter description here ...")
+          textarea(rows="5" ng-model="bill.description" md-maxlength="150" class="form-control" placeholder="Enter description here ...")
   
       div(class='form-group')
         div(class='col-sm-2')
         div(class='col-sm-10')
-          signature-pad(ng-model="sigPad.width")
+          signature-pad(ng-model="bill.sigPad")
+
+      div(class='form-group')
+        div(class='col-sm-2')
+        div(class='col-sm-10')
+          input(type="submit" ng-click="save()" class="btn btn-primary btn-lg" value="Save")
