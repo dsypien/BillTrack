@@ -1,4 +1,7 @@
 var gulp = require('gulp'),
+	watch = require('gulp-watch'),
+	browser = require('browser-sync').create(),
+	batch = require('gulp-batch'),
  	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
     stripDebug = require('gulp-strip-debug'),
@@ -13,7 +16,7 @@ gulp.task('default',
 );
 
 gulp.task('build', 
-	['lint', 'sass', 'compile']
+	['lint', 'sass', 'compile', 'watch', 'browser-sync']
 );
 
 gulp.task('build-dist', 
@@ -30,6 +33,20 @@ gulp.task('lint', function(){
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(jshint.reporter('fail'));
+});
+
+gulp.task('watch', function () {    
+    watch(['./app/components/*.js', './app/shared/*.js', './app/**/*.scss'], batch(function (events, done) {
+        gulp.start('build', done);
+    }));
+});
+
+gulp.task('browser-sync', function() {
+    browser.init({
+        proxy: {
+            target: '127.0.0.1:3000'
+        }
+    });
 });
 
 gulp.task('compile', ['clean'], function(){
