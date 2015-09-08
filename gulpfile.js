@@ -16,7 +16,7 @@ gulp.task('default',
 );
 
 gulp.task('build', 
-	['lint', 'sass', 'compile', 'watch', 'browser-sync']
+	['lint', 'sass', 'compile', 'watch']
 );
 
 gulp.task('build-dist', 
@@ -42,11 +42,11 @@ gulp.task('watch', function () {
 });
 
 gulp.task('browser-sync', function() {
-    browser.init({
-        proxy: {
-            target: '127.0.0.1:3000'
-        }
-    });
+//    browser.init({
+//        proxy: {
+//            target: '127.0.0.1:3000'
+//        }
+//    });
 });
 
 gulp.task('compile', ['clean'], function(){
