@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var busboy = require('connect-busboy');
 
-var routes = require('./routes/index');
-var bill = require('./routes/bill');
-var bills = require('./routes/bills');
+var homeRouter = require('./routes/homeRouter');
+var billRouter = require('./routes/billRouter');
+var billsRouter = require('./routes/billsRouter');
 
 var app = express();
 
@@ -24,10 +25,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use(busboy());
 
-app.use('/', routes);
-app.use('/bill', bill);
-app.use('/bills', bills);
+app.use('/', homeRouter);
+app.use('/bill', billRouter);
+app.use('/bills', billsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
