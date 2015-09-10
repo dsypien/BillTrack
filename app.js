@@ -6,11 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var busboy = require('connect-busboy');
 
+var db = require("./shared/db");
 var homeRouter = require('./routes/homeRouter');
 var billRouter = require('./routes/billRouter');
 var billsRouter = require('./routes/billsRouter');
 
-var app = express();
+var app = exports.app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,9 +19,14 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+db.init(function(err){
+  if(err){
+    console.log("Error creating db :" + err);
+  }});
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -30,6 +36,8 @@ app.use(busboy());
 app.use('/', homeRouter);
 app.use('/bill', billRouter);
 app.use('/bills', billsRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
