@@ -1,24 +1,25 @@
 var express = require('express');
-var bill = require('../shared/bill');
+var bill = require('../shared/bill')();
 var router = express.Router();
 
 // GET
 router.get('/', function(req, res) {
-  bill.get(function(err, items){
+  bill.get(req.query.id, function(err, item){
   	if(err){
   		res.json({'err': err});
   	}
   	else{
-  		res.json(items);
+  		res.json(item);
   	}
   })
 });
 
 // POST and DELETE
 router.post('/', function(req, res){
-	if(req.body._method === 'delete'){
+	if(req.query._method === 'delete'){
 		// DELETE
-		bill.deleteBill(req.body.id, function(err){
+		console.log(req.query);
+		bill.deleteBill(req.query.id, function(err){
 			if(err){
 				res.json({'err': err});
 			}
@@ -29,7 +30,7 @@ router.post('/', function(req, res){
 	}
 	else{
 		//INSERT
-		bill.insert(req.body, function(err, items){
+		bill.insert(req.query, function(err, items){
 			if(err){
 		  		res.json({'err': err});
 		  	}
@@ -42,7 +43,7 @@ router.post('/', function(req, res){
 
 // UPDATE
 router.put('/', function(req, res){
-	bill.update(req.body, function(err){
+	bill.update(req.query, function(err){
 		if(err){
 			res.json({'err': err});
 		}
