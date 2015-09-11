@@ -1,10 +1,9 @@
 var db = require('../shared/db');
 
 module.exports = function(){
-	function get(callback){
-		db.Bill.find(function(err, items){
-			photos = items;
-			callback(err, items);
+	function get(id, callback){
+		db.Bill.find({ id: id }, function(err, bill){
+			callback(err, bill);
 		});
 	}
 
@@ -32,6 +31,7 @@ module.exports = function(){
 
 	function deleteBill(id, callback){
 		db.Bill.find({ id: id }).remove(function (err) {
+			console.log(err);
 			callback(err);
 		});
 	}
@@ -40,6 +40,6 @@ module.exports = function(){
 		get: get,
 		insert: insert,
 		update: update,
-		delete: deleteBill
+		deleteBill: deleteBill
 	}
 };
