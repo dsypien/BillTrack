@@ -19,7 +19,7 @@ router.post('/', function(req, res){
 	if(req.query._method === 'delete'){
 		// DELETE
 		console.log(req.query);
-		bill.deleteBill(req.query.id, function(err){
+		bill.remove(req.query.id, function(err){
 			if(err){
 				res.json({'err': err});
 			}

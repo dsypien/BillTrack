@@ -20,16 +20,16 @@ module.exports = function(){
 
 	function update(billData, callback){
 		db.Bill.find({ id: billData.id }).each(function (bill) {
-    		name = billData.name;
-    		service_description = billData.service_description;
-    		price = billData.price;
-    		description = billData.description;
+    		bill.name = billData.name;
+    		bill.service_description = billData.service_description;
+    		bill.price = billData.price;
+    		bill.description = billData.description;
 		}).save(function (err) {
 		    callback(err);
 		});
 	}
 
-	function deleteBill(id, callback){
+	function remove(id, callback){
 		db.Bill.find({ id: id }).remove(function (err) {
 			console.log(err);
 			callback(err);
@@ -40,6 +40,6 @@ module.exports = function(){
 		get: get,
 		insert: insert,
 		update: update,
-		deleteBill: deleteBill
+		remove: remove
 	}
 };
