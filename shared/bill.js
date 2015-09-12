@@ -31,7 +31,6 @@ module.exports = function(){
 
 	function remove(id, callback){
 		db.Bill.find({ id: id }).remove(function (err) {
-			console.log(err);
 			callback(err);
 		});
 	}
