@@ -1,5 +1,6 @@
 var express = require('express');
 var bill = require('../shared/bill')();
+var snapshot = require('../shared/snapshot')();
 var router = express.Router();
 
 // GET
@@ -12,6 +13,28 @@ router.get('/', function(req, res) {
   		res.json(item);
   	}
   })
+});
+
+router.get('/snapshot', function(req,res){
+	snapshot.get(req.query.id, function(err, items){
+		if(err){
+			res.json({'err':err});
+		}
+		else{
+			res.json(items);
+		}
+	});
+});
+
+router.post('/snapshot', function(req,res){
+	snapshot.insert(req.query.snapshot, function(err, items){
+		if(err){
+			res.json({'err':err});
+		}
+		else{
+			res.json({'success' : true});
+		}
+	});
 });
 
 // POST and DELETE
