@@ -26,8 +26,31 @@ router.get('/snapshot', function(req,res){
 	});
 });
 
+router.get('/snapshot/*', function(req,res){
+	snapshot.getAll(function(err, items){
+		if(err){
+			res.json({'err':err});
+		}
+		else{
+			res.json(items);
+		}
+	});
+});
+
 router.post('/snapshot', function(req,res){
-	snapshot.insert(req.query.snapshot, function(err, items){
+	if(req.query._method === 'delete'){
+		snapshot.removeAll(function(err){
+			if(err){
+				res.json({'err':err});
+			}
+			else{
+				res.json({'success' : true});
+			}
+		});
+	}
+	else
+	{
+		snapshot.insert(req.query.snapshot, function(err){
 		if(err){
 			res.json({'err':err});
 		}
@@ -35,6 +58,7 @@ router.post('/snapshot', function(req,res){
 			res.json({'success' : true});
 		}
 	});
+	}
 });
 
 // POST and DELETE
