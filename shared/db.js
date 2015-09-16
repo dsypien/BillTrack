@@ -31,11 +31,18 @@ module.exports.init = function(callback){
 
 			//Associations
 
-			Snapshot.hasOne("owner", Bill, {
+			// Bill.hasMany("snapshots",
+			// 	{photo : Buffer},
+			// 	{key : true, autoFetch : true}
+			// );
+
+			// Bill.hasMany("signa")
+
+			Snapshot.hasOne("Bill", Bill, {
 			    reverse : "snapshots"
 			});
 
-			Signature.hasOne("owner", Bill, {
+			Signature.hasOne("Bill", Bill, {
 			    reverse : "signatures"
 			});
 
