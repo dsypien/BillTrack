@@ -3,8 +3,9 @@ var db = require("../shared/db");
 module.exports = function(){
 	function insert(imgData, callback){
 		db.Snapshot.create([{
-			photo: imgData
+			img: imgData
 		}], function(err,items){
+			console.dir(err);
 			callback(err, items);
 		});
 	}
