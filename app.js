@@ -9,7 +9,6 @@ var busboy = require('connect-busboy');
 var db = require("./shared/db");
 var homeRouter = require('./routes/homeRouter');
 var billRouter = require('./routes/billRouter');
-var billsRouter = require('./routes/billsRouter');
 
 var app = exports.app = express();
 
@@ -35,9 +34,6 @@ app.use(busboy());
 
 app.use('/', homeRouter);
 app.use('/bill', billRouter);
-app.use('/bills', billsRouter);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -4,8 +4,9 @@ var snapshot = require('../shared/snapshot')();
 var router = express.Router();
 
 // GET
-router.get('/', function(req, res) {
-  bill.get(req.query.id, function(err, item){
+router.get('/:id', function(req, res) {
+  bill.get(req.params.id, function(err, item){
+  	console.log("Getting bill with id " + req.params.id);
   	if(err){
   		res.json({'err': err});
   	}
@@ -13,6 +14,18 @@ router.get('/', function(req, res) {
   		res.json(item);
   	}
   })
+});
+
+router.get('/', function(req, res, next) {
+  	bills.getAll(function(err, item){
+  		console.log("Getting All");
+  		if(err){
+  			res.json({'err': err});
+  		}
+  		else{
+  			res.json(item);	
+  		}
+  	})
 });
 
 router.get('/snapshot', function(req,res){

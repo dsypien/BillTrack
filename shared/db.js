@@ -6,7 +6,7 @@ module.exports.Signature = null;
 
 module.exports.init = function(callback){
 	try{
-		orm.connect("sqlite://BillTrack.db", function(err, db){
+		orm.connect("sqlite://BillTrackr.db", function(err, db){
 			if(err){
 				console.log(err);
 				throw err;
@@ -18,8 +18,8 @@ module.exports.init = function(callback){
 				service_summary: String,
 				price: Number,
 				description: String,
-				snapshot_ids: Object,
-				signature_ids: Object
+				snapshots: Object,
+				signatures: Object
 			});
 
 			var Snapshot = db.define("Snapshot", {
