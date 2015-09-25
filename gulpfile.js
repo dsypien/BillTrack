@@ -36,7 +36,7 @@ gulp.task('lint', function(){
 });
 
 gulp.task('watch', function () {    
-    watch(['./app/components/*.js', './app/shared/*.js', './app/**/*.scss'], batch(function (events, done) {
+    watch(['./app/components/*.js', './app/components/*/*.html', './app/shared/*.js', './app/**/*.scss'], batch(function (events, done) {
         gulp.start('build', done);
     }));
 });
@@ -50,8 +50,11 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('compile', ['clean'], function(){
-	gulp.src(['./app/components/*.js', './app/shared/*.js'])
+	gulp.src(['./app/app.js', './app/components/*.js', './app/shared/*.js'])
 		.pipe(concat('bundled.js'))
+		.pipe(gulp.dest('./public'));
+
+	gulp.src(['./app/components/*.html'])
 		.pipe(gulp.dest('./public'));
 
 	gulp.src(['./app/assets/*'])
@@ -59,7 +62,7 @@ gulp.task('compile', ['clean'], function(){
 });
 
 gulp.task('compile-dist', ['clean'], function(){
-	gulp.src(['./app/components/*.js', './app/shared/*.js'])
+	gulp.src(['./app/app.js', './app/components/*.js', './app/shared/*.js'])
 		.pipe(concat('bunled.js'))
 		.pipe(uglify())
 		.pipe(stripDebug())
