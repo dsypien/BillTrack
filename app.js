@@ -35,11 +35,14 @@ app.use(busboy());
 app.use('/', homeRouter);
 app.use('/bill', billRouter);
 
+// Send other requests to angular app
+// app.use('*', function (req, res) {
+//     res.sendFile('/public/index.html');
+// });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+   res.sendFile('/public/index.html');
 });
 
 // error handlers

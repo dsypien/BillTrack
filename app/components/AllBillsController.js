@@ -5,7 +5,7 @@ angular.module('BillsApp')
 		$scope.bills = {};
 
 		function init(){
-			$http.get('bills').
+			$http.get('bill/all').
 				success(function(data, status, headers, config){
 					$scope.bills = data;
 				});
