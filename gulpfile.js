@@ -36,7 +36,7 @@ gulp.task('lint', function(){
 });
 
 gulp.task('watch', function () {    
-    watch(['./app/components/*.js', './app/components/*/*.html', './app/shared/*.js', './app/**/*.scss'], batch(function (events, done) {
+    watch(['./app/components/*.js', './app/components/*.html', './app/shared/*.js', './app/**/*.scss'], batch(function (events, done) {
         gulp.start('build', done);
     }));
 });
