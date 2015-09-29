@@ -1,5 +1,12 @@
 <div class='container'>
-	<li ng-repeat="bill in bills">
-		{{bill}}
-	</li>
+	<div class="list-group" ng-repeat="bill in bills">
+	  <a href="#" class="list-group-item active">
+	    <h4 class="list-group-item-heading">{{bill.name}} 
+	    	<span class="badge">
+	    		{{bill.price| currency:"$"}}
+	    	</span>
+	    </h4>
+	    <p class="list-group-item-text">{{bill.description}}</p>
+	  </a>
+	</div>
 </div>
