@@ -1,8 +1,14 @@
 angular.module('BillsApp')
-	.controller('AllBillsController', ['$scope', '$http', function($scope, $http){
+	.controller('AllBillsController', ['$scope', '$http', '$location', function($scope, $http, $location){
 		'use strict';
 
 		$scope.bills = {};
+
+		$scope.openBill = function(id){
+			console.log('opening bill with id ' + id);
+			$location.path('/bill/' + id);
+			event.stopPropagation();
+		};
 
 		function init(){
 			$http.get('bill/all').
