@@ -1,21 +1,19 @@
 angular.module('BillsApp')
-	.controller('AllBillsController', ['$scope', '$http', '$location', function($scope, $http, $location){
+	.controller('AllBillsController', ['$scope', '$http', '$location', 'BillsService', function($scope, $http, $location, BillsService){
 		'use strict';
-
-		$scope.bills = {};
 
 		$scope.openBill = function(id){
 			console.log('opening bill with id ' + id);
-			$location.path('/bill/' + id);
+			$location.path('/bill');
 			event.stopPropagation();
 		};
 
 		function init(){
-			$http.get('bill/all').
-				success(function(data, status, headers, config){
-					$scope.bills = data;
-				});
+			BillsService.getAllBills(function(bills){
+				$scope.bills = bills;
+			});
 		}
 
 		init();
+
 	}]);

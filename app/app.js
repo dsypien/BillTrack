@@ -4,7 +4,7 @@ angular.module('BillsApp', ['ngRoute']).
 	  	'use strict';
 
 	    $routeProvider.
-	      when('/bill/:id', {
+	      when('/bill/:index', {
 	        templateUrl: 'Bill.html',
 	        controller: 'BillController'
 	      }).
