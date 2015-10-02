@@ -5,9 +5,8 @@ angular.module('BillsApp')
 		var bills;
 		var currentBill;
 
-		function getBill(){
-			var index = $routeParams.index;
-			return bills[index];
+		function getCurrentBill(){
+			return currentBill;
 		}
 
 		function getAllBills(callback){
@@ -23,7 +22,7 @@ angular.module('BillsApp')
 
 		return{
 			getAllBills: getAllBills,
-			getBill : getBill,
+			getCurrentBill : getCurrentBill,
 			setCurrentBill: setCurrentBill
 		};
 	}]);

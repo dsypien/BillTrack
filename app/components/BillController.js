@@ -1,8 +1,8 @@
 angular.module('BillsApp')
-	.controller('BillController', ['$scope', function($scope){
+	.controller('BillController', ['$scope', 'BillsService', function($scope, BillsService){
 		'use strict';
 
-	 	$scope.bill = {};
+	 	$scope.bill = BillsService.getCurrentBill();
 	 	$scope.signatureCanvas = {};
 
 	 	$scope.save = function(){
