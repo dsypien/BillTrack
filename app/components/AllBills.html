@@ -1,11 +1,11 @@
 <div class='container'>
 	<div class="list-group">
-		<button type="button" ng-click="newBill();" class="btn btn-primary btn-lg btn-primary">
+		<button type="button" ng-click="newBill($event);" class="btn btn-primary btn-lg btn-primary">
 			New Bill
 			<span class='glyphicon glyphicon-plus'></span>
 		</button>
 	</div>
-	<div class="list-group" ng-repeat="bill in bills" ng-click="openBill(bill);">
+	<div class="list-group" ng-repeat="bill in bills" ng-click="openBill(bill, $event);">
 	  <a href="#" class="list-group-item active">
 	    <h4 class="list-group-item-heading">{{bill.name}} 
 	    	<span class="badge">
