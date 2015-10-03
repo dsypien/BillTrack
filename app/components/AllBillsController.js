@@ -5,8 +5,12 @@ angular.module('BillsApp')
 		$scope.openBill = function(bill){
 			BillsService.setCurrentBill(bill);
 			$location.path('/bill/' + bill.id);
-			event.stopPropagation();
 		};
+
+		$scope.newBill = function(){
+			BillsService.setCurrentBill(null);
+			$location.path('/bill/');
+		}
 
 		function init(){
 			BillsService.getAllBills(function(bills){
