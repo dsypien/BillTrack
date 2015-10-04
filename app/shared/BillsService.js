@@ -10,19 +10,46 @@ angular.module('BillsApp')
 		}
 
 		function getAllBills(callback){
-			$http.get('bill/all').
+			if(bills){
+				return bills;
+			}
+			else{
+				$http.get('bill/all').
 				success(function(data, status, headers, config){
+					bills = data;
 					callback(data);
 				});
+			}
 		}
 
 		function setCurrentBill(bill){
 			currentBill = bill;
 		}
 
+		function save(bill, callback){
+			var billStr = JSON.stringify(bill);
+
+			if(bill.id){
+				//$http.post('/slideshows/new', slide).success(function(data, status, headers, config){
+				$http.put('/bill', billStr).
+					success(function(data){
+						bills = data;
+						callback();
+					});
+			}
+			else{
+				$http.post('/bill', billStr).
+					success(function(data){
+						bills = data;
+						callback();
+					});
+			}
+		}
+
 		return{
 			getAllBills: getAllBills,
 			getCurrentBill : getCurrentBill,
-			setCurrentBill: setCurrentBill
+			setCurrentBill: setCurrentBill,
+			save: save
 		};
 	}]);
