@@ -31,14 +31,14 @@ angular.module('BillsApp')
 
 			if(bill.id){
 				//$http.post('/slideshows/new', slide).success(function(data, status, headers, config){
-				$http.put('/bill', billStr).
+				$http.put('/bill', bill).
 					success(function(data){
 						bills = data;
 						callback();
 					});
 			}
 			else{
-				$http.post('/bill', billStr).
+				$http.post('/bill', bill).
 					success(function(data){
 						bills = data;
 						callback();

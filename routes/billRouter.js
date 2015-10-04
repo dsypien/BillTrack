@@ -29,7 +29,7 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/snapshot', function(req,res){
-	snapshot.get(req.query.id, function(err, items){
+	snapshot.get(req.body.id, function(err, items){
 		if(err){
 			res.json({'err':err});
 		}
@@ -51,7 +51,8 @@ router.get('/snapshot/*', function(req,res){
 });
 
 router.post('/snapshot', function(req,res){
-	if(req.query._method === 'delete'){
+	console.log(req.body);
+	if(req.body._method === 'delete'){
 		snapshot.removeAll(function(err){
 			if(err){
 				res.json({'err':err});
@@ -63,7 +64,7 @@ router.post('/snapshot', function(req,res){
 	}
 	else
 	{
-		snapshot.insert(req.query.snapshot, function(err){
+		snapshot.insert(req.body.snapshot, function(err){
 		if(err){
 			res.json({'err':err});
 		}
@@ -76,10 +77,10 @@ router.post('/snapshot', function(req,res){
 
 // POST and DELETE
 router.post('/', function(req, res){
-	if(req.query._method === 'delete'){
+	if(req.body._method === 'delete'){
 		// DELETE
-		console.log(req.query);
-		bill.remove(req.query.id, function(err){
+		console.log(req.body);
+		bill.remove(req.body.id, function(err){
 			if(err){
 				res.json({'err': err});
 			}
@@ -90,7 +91,7 @@ router.post('/', function(req, res){
 	}
 	else{
 		//INSERT
-		bill.insert(req.query, function(err, items){
+		bill.insert(req.body, function(err, items){
 			if(err){
 		  		res.json({'err': err});
 		  	}
@@ -103,7 +104,7 @@ router.post('/', function(req, res){
 
 // UPDATE
 router.put('/', function(req, res){
-	bill.update(req.query, function(err){
+	bill.update(req.body, function(err){
 		if(err){
 			res.json({'err': err});
 		}
