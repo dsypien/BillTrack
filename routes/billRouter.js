@@ -3,17 +3,22 @@ var bill = require('../shared/bill')();
 var snapshot = require('../shared/snapshot')();
 var router = express.Router();
 
-// GET
-router.get('/all', function(req, res, next) {
-  	bill.getAll(function(err, item){
-  		console.log("Getting All");
+function _getAll(callback){
+	bill.getAll(function(err, item){
   		if(err){
-  			res.json({'err': err});
+  			callback({'err': err});
   		}
   		else{
-  			res.json(item);	
+  			callback(item);	
   		}
-  	})
+  	});
+}
+
+// GET
+router.get('/all', function(req, res, next) {
+  	_getAll(function(bills){
+  		res.json(bills);
+  	});
 });
 
 router.get('/:id', function(req, res) {
@@ -23,7 +28,9 @@ router.get('/:id', function(req, res) {
   		res.json({'err': err});
   	}
   	else{
-  		res.json(item);
+  		_getAll(function(bills){
+  			res.json(bills);
+  		});
   	}
   })
 });
@@ -85,7 +92,7 @@ router.post('/', function(req, res){
 				res.json({'err': err});
 			}
 			else{
-				res.json({'success': true});
+				res.json(_getAll());
 			}
 		});
 	}
@@ -96,7 +103,7 @@ router.post('/', function(req, res){
 		  		res.json({'err': err});
 		  	}
 		  	else{
-		  		res.json(items);
+		  		res.json(_getAll());
 		  	}
 		});
 	}
@@ -109,7 +116,7 @@ router.put('/', function(req, res){
 			res.json({'err': err});
 		}
 		else{
-			res.json({'success': true});
+			res.json(_getAll());
 		}
 	});
 });

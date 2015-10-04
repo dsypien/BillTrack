@@ -8,11 +8,6 @@ module.exports = function(){
 	}
 
 	function insert(billData, callback){
-			console.log(billData.name);
-    		console.log(billData.service_summary);
-    		console.log(billData.price);
-    		console.log(billData.description);
-
 		db.Bill.create([{
 			name : billData.name,
     		service_summary : billData.service_summary,
