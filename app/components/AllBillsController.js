@@ -15,4 +15,14 @@ angular.module('BillsApp')
 			event.stopPropagation();
 			event.preventDefault();
 		};
+
+		$scope.deleteBill = function(index, event){
+			BillsService.deleteBill($scope.bills[index], function(data){
+				$scope.bills = data;
+			});
+
+
+			event.stopPropagation();
+			event.preventDefault();
+		}
 	}]);

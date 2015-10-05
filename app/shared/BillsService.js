@@ -30,7 +30,6 @@ angular.module('BillsApp')
 			var billStr = JSON.stringify(bill);
 
 			if(bill.id){
-				//$http.post('/slideshows/new', slide).success(function(data, status, headers, config){
 				$http.put('/bill', bill).
 					success(function(data){
 						bills = data;
@@ -46,10 +45,22 @@ angular.module('BillsApp')
 			}
 		}
 
+		function deleteBill(bill, callback){
+			bill._method = 'delete';
+
+			$http.post('/bill', bill).
+				success(function(data){
+					bills = data;
+					callback(data);
+				});
+
+		}
+
 		return{
 			getAllBills: getAllBills,
 			getCurrentBill : getCurrentBill,
 			setCurrentBill: setCurrentBill,
-			save: save
+			save: save,
+			deleteBill : deleteBill
 		};
 	}]);

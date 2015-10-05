@@ -92,7 +92,9 @@ router.post('/', function(req, res){
 				res.json({'err': err});
 			}
 			else{
-				res.json(_getAll());
+				_getAll(function(bills){
+		  			res.json(bills);
+		  		});
 			}
 		});
 	}
@@ -103,7 +105,9 @@ router.post('/', function(req, res){
 		  		res.json({'err': err});
 		  	}
 		  	else{
-		  		res.json(_getAll());
+		  		_getAll(function(bills){
+		  			res.json(bills);
+		  		});
 		  	}
 		});
 	}
@@ -116,7 +120,9 @@ router.put('/', function(req, res){
 			res.json({'err': err});
 		}
 		else{
-			res.json(_getAll());
+			_getAll(function(bills){
+	  			res.json(bills);
+	  		});
 		}
 	});
 });

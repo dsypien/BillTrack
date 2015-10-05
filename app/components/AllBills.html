@@ -14,7 +14,9 @@
 	    </h4>
 	    <p class="list-group-item-text">
 	    	{{bill.description}}
-	    	<span class='glyphicon glyphicon-remove'></span>
+	    	<button type="button" ng-click="deleteBill($index, $event);" class="btn btn-primary btn-lg btn-primary">
+	    		<span class='glyphicon glyphicon-remove'></span>
+	    	</button>
 	    </p>
 	  </a>
 	</div>
