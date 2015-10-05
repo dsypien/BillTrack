@@ -33,14 +33,14 @@ angular.module('BillsApp')
 				$http.put('/bill', bill).
 					success(function(data){
 						bills = data;
-						callback();
+						callback(data);
 					});
 			}
 			else{
 				$http.post('/bill', bill).
 					success(function(data){
 						bills = data;
-						callback();
+						callback(data);
 					});
 			}
 		}
