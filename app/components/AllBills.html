@@ -1,6 +1,6 @@
 <div class='container'>
 	<div class="list-group">
-		<button type="button" ng-click="newBill($event);" class="btn btn-primary btn-lg btn-primary">
+		<button type="button" ng-click="newBill($event);" class="btn btn-lg btn-action">
 			New Bill
 			<span class='glyphicon glyphicon-plus'></span>
 		</button>
@@ -11,12 +11,13 @@
 	    	<span class="badge">
 	    		{{bill.price| currency:"$"}}
 	    	</span>
+	    	<button type="button" ng-click="deleteBill($index, $event);" class="btn btn-danger remove-btn btn-primary btn-sm btn-primary">
+	    		Delete
+	    		<span class='glyphicon glyphicon-remove'></span>
+	    	</button>
 	    </h4>
 	    <p class="list-group-item-text">
 	    	{{bill.description}}
-	    	<button type="button" ng-click="deleteBill($index, $event);" class="btn btn-primary btn-lg btn-primary">
-	    		<span class='glyphicon glyphicon-remove'></span>
-	    	</button>
 	    </p>
 	  </a>
 	</div>

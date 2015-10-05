@@ -8,7 +8,8 @@ angular.module('BillsApp')
 	 	$scope.save = function(){
 	 		$scope.bill.signatureImage = $scope.signatureCanvas.toDataURL();
 
-	 		BillsService.save($scope.bill, function(){
+	 		BillsService.save($scope.bill, function(data){
+	 			$scope.bills = data;
 	 			$location.path('/allbills');
 	 		});
 	 	};

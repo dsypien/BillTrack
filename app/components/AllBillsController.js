@@ -21,8 +21,11 @@ angular.module('BillsApp')
 				$scope.bills = data;
 			});
 
-
 			event.stopPropagation();
 			event.preventDefault();
-		}
+		};
+
+		$scope.$on('$locationChangeStart', function(event) {
+			
+		});
 	}]);
