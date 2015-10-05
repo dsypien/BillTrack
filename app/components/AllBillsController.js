@@ -15,13 +15,4 @@ angular.module('BillsApp')
 			event.stopPropagation();
 			event.preventDefault();
 		};
-
-		function init(){
-			BillsService.getAllBills(function(bills){
-				$scope.bills = bills;
-			});
-		}
-
-		init();
-
 	}]);
