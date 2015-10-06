@@ -11,7 +11,7 @@ angular.module('BillsApp')
 
 		function getAllBills(callback){
 			if(bills){
-				return bills;
+				callback(bills);
 			}
 			else{
 				$http.get('bill/all').
