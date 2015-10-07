@@ -12,7 +12,8 @@ module.exports = function(){
 			name : billData.name,
     		service_summary : billData.service_summary,
     		price : billData.price,
-    		description : billData.description
+    		description : billData.description,
+    		snapshots : billData.snapshots
 		}], function(err, items){	
 			console.log("Error: " + err);					
 			callback(err, items);				
@@ -25,6 +26,7 @@ module.exports = function(){
     		bill.service_description = billData.service_description;
     		bill.price = billData.price;
     		bill.description = billData.description;
+    		bill.snapshots = billData.snapshots;
 		}).save(function (err) {
 		    callback(err);
 		});

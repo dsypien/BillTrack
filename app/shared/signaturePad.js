@@ -7,13 +7,26 @@ angular.module('BillsApp')
 	            _prevX,
 	            _prevY,
 	            _prevCoords = [],
-	            _mouseMoves = 0;
+	            _mouseMoves = 0,
+                _img = new Image;
 
 	        $scope.signatureCanvas = _canvas;
 
-	         function _init(){
+	        function _init(){
 	        	_context.strokeStyle = "#777"; 	
-	         }
+
+                var snapshot = JSON.parse($scope.bill).snapshots ? JSON.parse($scope.bill).snapshots[0] : null;
+
+                if(snapshot){
+                    var img = new Image;
+
+                    img.onload = function(){
+                        _context.drawImage(img,0,0); 
+                    };
+
+                    img.src = snapshot;
+                }
+	        }
 
             $element.bind('touchstart mousedown', function (event) {	            	
                	_isDrawing = true;
@@ -65,13 +78,16 @@ angular.module('BillsApp')
 					_prevCoords.splice(0, 2);
             	}
            	}
+
+            _init();
 		}
 
 		return{
 			restrict: 'E',
 			controller: _controller,	
 			scope: {
-				signatureCanvas : '=ngModel'
+				signatureCanvas : '=ngModel',
+                bill: '@'
 			},
         	require: 'ngModel',
 			replace: false,
