@@ -13,19 +13,21 @@ angular.module('BillsApp')
 	        $scope.signatureCanvas = _canvas;
 
 	        function _init(){
-	        	_context.strokeStyle = "#777"; 	
+	        	_context.strokeStyle = "#777"; 
 
-                var snapshot = JSON.parse($scope.bill).snapshots ? JSON.parse($scope.bill).snapshots[0] : null;
+                if($scope.bill){
+                    var signature = JSON.parse($scope.bill).signatures ? JSON.parse($scope.bill).signatures[0] : null;
 
-                if(snapshot){
-                    var img = new Image;
+                    if(signature){
+                        var img = new Image;
 
-                    img.onload = function(){
-                        _context.drawImage(img,0,0); 
-                    };
+                        img.onload = function(){
+                            _context.drawImage(img,0,0); 
+                        };
 
-                    img.src = snapshot;
-                }
+                        img.src = signature;
+                    }
+                }	
 	        }
 
             $element.bind('touchstart mousedown', function (event) {	            	

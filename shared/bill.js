@@ -13,7 +13,7 @@ module.exports = function(){
     		service_summary : billData.service_summary,
     		price : billData.price,
     		description : billData.description,
-    		snapshots : billData.snapshots
+    		signatures : billData.signatures
 		}], function(err, items){	
 			console.log("Error: " + err);					
 			callback(err, items);				
@@ -26,7 +26,7 @@ module.exports = function(){
     		bill.service_description = billData.service_description;
     		bill.price = billData.price;
     		bill.description = billData.description;
-    		bill.snapshots = billData.snapshots;
+    		bill.signatures = billData.signatures;
 		}).save(function (err) {
 		    callback(err);
 		});
