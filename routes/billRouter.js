@@ -22,15 +22,13 @@ router.get('/all', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res) {
-  bill.get(req.params.id, function(err, item){
+  bill.get(req.params.id, function(err, items){
   	console.log("Getting bill with id " + req.params.id);
   	if(err){
   		res.json({'err': err});
   	}
   	else{
-  		_getAll(function(bills){
-  			res.json(bills);
-  		});
+		res.json(items[0]);
   	}
   })
 });

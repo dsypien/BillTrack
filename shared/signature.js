@@ -1,6 +1,7 @@
 var db = require("../shared/db");
 
 module.exports = function(){
+	
 	function insert(imgData, callback){
 		var imgBuffer = new Buffer(imgData, 'base64');
 

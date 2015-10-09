@@ -4,7 +4,7 @@ angular.module('BillsApp')
 
 		$scope.openBill = function(bill, event){
 			BillsService.setCurrentBill(bill);
-			$location.path('/bill');
+			$location.path('/bill/' + bill.id);
 			event.stopPropagation();
 			event.preventDefault();
 		};

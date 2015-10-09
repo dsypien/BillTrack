@@ -1,8 +1,7 @@
 angular.module('BillsApp')
-	.controller('BillController', ['$scope', 'BillsService', '$location', function($scope, BillsService, $location){
+	.controller('BillController', ['$scope', 'BillsService', '$location', '$routeParams', function($scope, BillsService, $location, $routeParams){
 		'use strict';
 
-	 	$scope.bill = BillsService.getCurrentBill();
 	 	$scope.signatureCanvas = {};
 
 	 	$scope.save = function(){
@@ -14,4 +13,12 @@ angular.module('BillsApp')
 	 			$location.path('/allbills');
 	 		});
 	 	};
+
+	 	function _init(){
+	 		BillsService.getBill($routeParams.id, function(data){
+	 			$scope.bill = data;
+	 		});
+	 	}
+
+	 	_init();
 	}]);

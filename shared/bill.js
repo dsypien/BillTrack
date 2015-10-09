@@ -39,7 +39,7 @@ module.exports = function(){
 	}
 
 	function getAll(callback){
-		db.Bill.find(function(err, items){
+		db.Bill.find().only("id", "name", "service_summary", "price", "description").run(function(err, items){
 			callback(err, items);
 		});
 	}

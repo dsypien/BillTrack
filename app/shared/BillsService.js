@@ -5,8 +5,11 @@ angular.module('BillsApp')
 		var bills;
 		var currentBill;
 
-		function getCurrentBill(){
-			return currentBill;
+		function getBill(id, callback){
+			$http.get('bill/' + id).
+				success(function(data){
+					callback(data);
+				});
 		}
 
 		function getAllBills(callback){
@@ -14,7 +17,7 @@ angular.module('BillsApp')
 				callback(bills);
 			}
 			else{
-				$http.get('bill/all').
+				$http.get('bill/' + "all").
 				success(function(data, status, headers, config){
 					bills = data;
 					callback(data);
@@ -58,7 +61,7 @@ angular.module('BillsApp')
 
 		return{
 			getAllBills: getAllBills,
-			getCurrentBill : getCurrentBill,
+			getBill : getBill,
 			setCurrentBill: setCurrentBill,
 			save: save,
 			deleteBill : deleteBill
