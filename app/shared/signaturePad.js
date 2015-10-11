@@ -7,13 +7,13 @@ angular.module('BillsApp')
 	            _prevX,
 	            _prevY,
 	            _prevCoords = [],
-	            _mouseMoves = 0,
-                _img = new Image;
+	            _mouseMoves = 0;
 
 	        $scope.signatureCanvas = _canvas;
 
 	        function _init(){
 	        	_context.strokeStyle = "#777"; 
+                _context.lineWidth = 5;
                 _drawSignature();
 	        }
 
@@ -40,14 +40,30 @@ angular.module('BillsApp')
             $element.bind('touchstart mousedown', function (event) {	            	
                	_isDrawing = true;
 
-                _prevX = event.offsetX;
-                _prevY = event.offsetY;	            
+                if(event.offsetX){
+                    _prevX = event.offsetX;
+                    _prevY = event.offsetY;             
+                }
+                else{
+                    _prevX = event.touches[0].clientX;
+                    _prevY = event.touches[0].clientY;
+                }
             });
 
             $element.bind('touchmove mousemove', function (event) {
                 if (_isDrawing) {                    
-                    var curX = event.offsetX;
+                    var curX= event.offsetX;
                     var curY = event.offsetY;
+
+                    if(event.offsetX){
+                        curX= event.offsetX;
+                        curY = event.offsetY;
+                    }
+                    else{
+                        curX = event.touches[0].clientX;
+                        curY = event.touches[0].clientY;
+                    }
+
                     _mouseMoves++;
 
                     _draw(_prevX, _prevY, curX, curY);
@@ -77,11 +93,11 @@ angular.module('BillsApp')
 					_context.stroke();
 
 					console.log("drawing points " + 
-						_prevCoords[0].x +
-            			_prevCoords[0].y +
-            			_prevCoords[1].x +
-            			_prevCoords[1].y +
-            			_prevCoords[2].x +
+						_prevCoords[0].x + " " +
+            			_prevCoords[0].y + " " +
+            			_prevCoords[1].x + " " +
+            			_prevCoords[1].y + " " +
+            			_prevCoords[2].x + " " +
             			_prevCoords[2].y );
 
 					_prevCoords.splice(0, 2);

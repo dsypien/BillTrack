@@ -8,6 +8,10 @@ angular.module('BillsApp', ['ngRoute']).
 	        templateUrl: 'Bill.html',
 	        controller: 'BillController'
 	      }).
+	      when('/newbill', {
+	        templateUrl: 'Bill.html',
+	        controller: 'BillController'
+	      }).
 	      when('/allbills', {
 	      	templateUrl: 'AllBills.html',
 	      	controller: 'AllBillsController'

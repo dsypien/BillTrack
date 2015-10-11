@@ -11,7 +11,7 @@ angular.module('BillsApp')
 
 		$scope.newBill = function(event){
 			BillsService.setCurrentBill(null);
-			$location.path('/bill');
+			$location.path('/newbill');
 			event.stopPropagation();
 			event.preventDefault();
 		};
