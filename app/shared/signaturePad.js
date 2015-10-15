@@ -1,8 +1,8 @@
 angular.module('BillsApp')
 	.directive('signaturePad', ['$window',  function($window){
 		function _controller($scope, $element){
-			var _canvas = $element[0].childNodes[0];
-			var _context = _canvas.getContext('2d'),
+			var _canvas = $element[0].childNodes[0],
+			    _context = _canvas.getContext('2d'),
 				_isDrawing = false,
 	            _prevX,
 	            _prevY,
@@ -116,6 +116,6 @@ angular.module('BillsApp')
 			},
         	require: 'ngModel',
 			replace: false,
-			template: '<canvas width=500 height=200></canvas>'
+			templateUrl: 'signaturePad.html'
 		};
 	}]);

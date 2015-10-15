@@ -54,7 +54,7 @@ gulp.task('compile', ['clean'], function(){
 		.pipe(concat('bundled.js'))
 		.pipe(gulp.dest('./public'));
 
-	gulp.src(['./app/*.html', './app/components/*.html'])
+	gulp.src(['./app/*.html', './app/shared/*.html', './app/components/*.html'])
 		.pipe(gulp.dest('./public'));
 
 	gulp.src(['./app/assets/*'])
