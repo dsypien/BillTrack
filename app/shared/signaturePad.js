@@ -116,6 +116,6 @@ angular.module('BillsApp')
 			},
         	require: 'ngModel',
 			replace: false,
-			templateUrl: 'signaturePad.html'
+			template: '<canvas width=500 height=200></canvas>'
 		};
 	}]);

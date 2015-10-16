@@ -22,7 +22,7 @@
       <label class="col-sm-2 control-label"> Price</label>
       <div class="col-sm-10">
         <div class='input-group'>
-          <div class="input-group-addon"> $ </div>
+          <div class="input-group-addon"> AR </div>
           <input type="number" ng-model="bill.price" placeholder="Price  required" ng-required="true" class="form-control">
         </div>
       </div>
@@ -36,8 +36,11 @@
     </div>
     
     <div class='form-group'>
-      <signature-pad bill={{bill}} ng-model="signatureCanvas">
-      </signature-pad>
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-10">
+        <signature-pad bill={{bill}} ng-model="signatureCanvas">
+        </signature-pad>
+      </div>
     </div>
 
     <div class='form-group'>
